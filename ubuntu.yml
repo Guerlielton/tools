@@ -312,7 +312,7 @@
         become: true
         apt:
           name: ulauncher
-     - block:
+    - block:
       - name: Install Discord
         become: true
         apt:
