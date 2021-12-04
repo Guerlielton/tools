@@ -90,37 +90,37 @@
           name: google-chrome-stable
 
     - block:
-      - name: Installing Vagrant 2.2.15
+      - name: Installing Vagrant 2.2.18
         become: true
         unarchive:
-          src: 'https://releases.hashicorp.com/vagrant/2.2.15/vagrant_2.2.15_linux_amd64.zip'
+          src: 'https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
 
     - block:
-      - name: Installing Terraform 0.15.0
+      - name: Installing Terraform 1.0.11
         become: true
         unarchive:
-          src: 'https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip'
+          src: 'https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
-          
+
+
     - block:
-      - name: Installing Vault 1.7.1
+      - name: Installing Vault 1.8.1
         become: true
         unarchive:
-          src: 'https://releases.hashicorp.com/vault/1.7.1/vault_1.7.1_linux_amd64.zip'
+          src: 'https://releases.hashicorp.com/vault/1.8.1/vault_1.8.1_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
 
     - block:
-      - name: Installing gomplate 3.7.0
+      - name: Installing gomplate 3.9.0
         become: true
         get_url:    
-          url: 'https://github.com/hairyhenderson/gomplate/releases/download/v3.7.0/gomplate_linux-amd64'
+          url: 'https://github.com/hairyhenderson/gomplate/releases/download/v3.9.0/gomplate_linux-amd64'
           dest: /usr/local/bin/gomplate
           mode: 755
-          remote_src: yes
 
     - block:
       - name: Installing Stern 1.11.0
@@ -129,7 +129,6 @@
           url: 'https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64'
           dest: /usr/local/bin/stern
           mode: 755
-          remote_src: yes
 
     - block:
       - name: Install Google Cloud SDK Key
@@ -205,19 +204,16 @@
           url: 'https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64'
           dest: '/usr/local/bin/docker-compose'
           mode: 755
-          remote_src: yes
       - name: Install Docker Machine Bash Completion
         become: true
         get_url:
           url: 'https://raw.githubusercontent.com/docker/machine/v0.16.0/contrib/completion/bash/docker-machine.bash'
           dest: '/etc/bash_completion.d/docker-machine'
-          remote_src: yes
       - name: Install Docker-Compose Bash Completion
         become: true
         get_url:
-          url: 'https://raw.githubusercontent.com/docker/compose/1.26.2/contrib/completion/bash/docker-compose'
+          url: 'https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose'
           dest: '/etc/bash_completion.d/docker-compose'
-          remote_src: yes
       - name: Install Docker-Compose and Docker Machine Zsh Completion
         lineinfile:
           path: /home/{{ ansible_user_id }}/.zshrc
@@ -225,13 +221,12 @@
           line: 'plugins=(git docker docker-compose)'
         
     - block:
-      - name: Installing Kubectl 1.21.0
+      - name: Installing Kubectl 1.22.0
         become: true
         get_url:    
-          url: 'https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl'
+          url: 'https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl'
           dest: /usr/local/bin/kubectl
           mode: 755
-          remote_src: yes          
       - name: Downloading Kubectx and Kubens 
         become: true
         git:
@@ -317,3 +312,13 @@
         become: true
         apt:
           name: ulauncher
+     - block:
+      - name: Install Discord
+        become: true
+        apt:
+          deb: https://discord.com/api/download?platform=linux&format=deb
+    - block:
+      - name: Install Sublime Text
+        become: true
+        apt:
+          deb: https://download.sublimetext.com/sublime-text_build-3211_amd64.deb
