@@ -90,27 +90,27 @@
           name: google-chrome-stable
 
     - block:
-      - name: Installing Vagrant 2.2.18
+      - name: Installing Vagrant 2.4.1
         become: true
         unarchive:
-          src: 'https://releases.hashicorp.com/vagrant/2.2.18/vagrant_2.2.18_linux_amd64.zip'
+          src: 'https://releases.hashicorp.com/vagrant/2.4.1/vagrant_2.4.1_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
 
     - block:
-      - name: Installing Terraform 1.0.11
+      - name: Installing Terraform 1.8.2
         become: true
         unarchive:
-          src: 'https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip'
+          src: 'https://releases.hashicorp.com/terraform/1.8.2/terraform_1.8.2_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
 
 
     - block:
-      - name: Installing Vault 1.8.1
+      - name: Installing Vault 1.16.2
         become: true
         unarchive:
-          src: 'https://releases.hashicorp.com/vault/1.8.1/vault_1.8.1_linux_amd64.zip'
+          src: 'https://releases.hashicorp.com/vault/1.16.2/vault_1.16.2_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
 
@@ -201,7 +201,7 @@
       - name: Install Docker-Compose
         become: true
         get_url:
-          url: 'https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64'
+          url: 'https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-linux-x86_64'
           dest: '/usr/local/bin/docker-compose'
           mode: 755
       - name: Install Docker Machine Bash Completion
@@ -221,10 +221,10 @@
           line: 'plugins=(git docker docker-compose)'
         
     - block:
-      - name: Installing Kubectl 1.22.0
+      - name: Installing Kubectl 1.30.0
         become: true
         get_url:    
-          url: 'https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl'
+          url: 'https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl'
           dest: /usr/local/bin/kubectl
           mode: 755
       - name: Downloading Kubectx and Kubens 
@@ -266,23 +266,23 @@
 #  - Brave Browser - Secure web browser
 #  - Ulauncher - Application Launcher
 
-    - block:
-      - name: Adding Peek Repository
-        become: true
-        apt_repository:
-          repo: 'ppa:peek-developers/stable'
-      - name: Install Peek
-        become: true
-        apt:
-          name: peek
+    # - block:
+    #   - name: Adding Peek Repository
+    #     become: true
+    #     apt_repository:
+    #       repo: 'ppa:peek-developers/stable'
+    #   - name: Install Peek
+    #     become: true
+    #     apt:
+    #       name: peek
 
-    - block:
-      - name: Install obsproject Ubuntu Repo
-        become: true
-        apt_repository:
-          repo: 'ppa:obsproject/obs-studio'
-      - name: Install obs Studio
-        become: true
+    # - block:
+    #   - name: Install obsproject Ubuntu Repo
+    #     become: true
+    #     apt_repository:
+    #       repo: 'ppa:obsproject/obs-studio'
+    #   - name: Install obs Studio
+    #     become: true
         apt:
           name: obs-studio
 
